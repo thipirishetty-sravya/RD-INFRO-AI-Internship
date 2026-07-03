@@ -1,0 +1,12 @@
+import pandas as pd
+df = pd.read_csv("titanic.csv")
+print("First 5 Rows:")
+print(df.head())
+print("\nMissing Values:")
+print(df.isnull().sum())
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+df["Embarked"] = df["Embarked"].fillna(df["Embarked"].mode()[0])
+df = df.drop(columns=["Cabin"])
+df.to_csv("cleaned_titanic.csv", index=False)
+print("\nData Cleaning Completed!")
+print("Cleaned file saved as cleaned_titanic.csv")
